@@ -18,9 +18,7 @@ select continent,AVG(LifeExpectancy)As averagelifeexpectancy from country
 group by continent;
 select continent ,count(*)as numberofcountries from country
 group by continent;
-select city.Name as cityName , country.Name 
-from city
-join country on city.countrycode = country.code;select city.Name as cityName , country.Name 
+select city.Name as cityName , country.Name  as countryname
 from city
 join country on city.countrycode = country.code;
 
@@ -30,4 +28,14 @@ join country on countrylanguage.CountryCode=country.code;
 
 select country.name as countryName ,countrylanguage.Language
 from countrylanguage
-join country on countrylanuguage.countrycode=country.Code
+join country on countrylanuguage.countrycode=country.Code;
+
+select name,population from country where population=(select max(population)from country);
+select name,population from country where population>(select avg(population)from city);
+select name from city where name like '%york';
+update city 
+set population=population *1.10
+where countrycode='JPN';
+
+update country set continent='Oceania' where name='Australia';
+-- delete from city where population <500;
